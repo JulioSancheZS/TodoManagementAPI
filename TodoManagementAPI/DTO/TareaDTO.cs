@@ -12,6 +12,6 @@
 
         public int? IdUsuario { get; set; }
 
-        public string EstadoTarea { get; set; }
+        public string? EstadoTarea { get; set; }
     }
 }

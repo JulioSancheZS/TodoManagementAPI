@@ -16,7 +16,16 @@ namespace TodoManagementAPI.Repository.Implementacion
 
         public async Task<IQueryable<Tarea>> Consultar(Expression<Func<Tarea, bool>> filtro = null)
         {
-            IQueryable<Tarea> query = filtro == null ? _context.Tareas : _context.Tareas.Where(filtro);
+            //IQueryable<Tarea> query = filtro == null ? _context.Tareas.OrderByDescending(x => x.IdTarea).Include(x => x.IdEstadoTareaNavigation) : _context.Tareas.Where(filtro);
+            //return query;
+
+            IQueryable<Tarea> query = _context.Tareas.OrderByDescending(x => x.IdTarea).Include(x => x.IdEstadoTareaNavigation);
+
+            if (filtro != null)
+            {
+                query = query.Where(filtro);
+            }
+
             return query;
         }
 
@@ -24,6 +33,13 @@ namespace TodoManagementAPI.Repository.Implementacion
         {
             try
             {
+                //Tarea oTarea = new Tarea();
+
+                //oTarea.Titulo = tarea.Titulo;
+                //oTarea.Descripcion = tarea.Descripcion;
+                //oTarea.IdEstadoTarea = tarea.IdEstadoTarea;
+                //oTarea.IdUsuario = tarea.IdUsuario; 
+
                 _context.Set<Tarea>().Add(tarea);
                 await _context.SaveChangesAsync();
                 return tarea;

@@ -5,7 +5,6 @@ using System.Text;
 using TodoManagementAPI.Models;
 using TodoManagementAPI.Repository.Contrato;
 using TodoManagementAPI.Repository.Implementacion;
-using TodoManagementAPI.Utilidades;
 
 var builder = WebApplication.CreateBuilder(args);
 
